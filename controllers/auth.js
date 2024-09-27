@@ -9,6 +9,7 @@ exports.join = async (req, res, next) => {
         if (exUser) {
             return res.redirect('/join?error=exist')
         }
+         // 첫번째 인수는 비밀번호와 두번째는 반복횟수(횟수가 늘수록 비번을 알아내기 어렵지만 암호화도 오래걸림 31까지 가능 12 이상 추천)
         const hash = await bcrypt.hash(password, 12)
         await User.create({
             email,
